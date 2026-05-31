@@ -77,7 +77,7 @@ export default function SpecsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.7, ease: easeOut, delay: 0.08 }}
-            className="font-display text-[clamp(32px,5vw,60px)] leading-[0.95] tracking-[-0.02em] text-foreground"
+            className="font-display text-[clamp(40px,5.5vw,68px)] leading-[0.95] tracking-[-0.02em] text-foreground"
           >
             Built to spec,
             <br />
@@ -97,14 +97,14 @@ export default function SpecsSection() {
                 transition={{ duration: 0.65, ease: easeOut, delay: i * 0.1 }}
                 className="bg-surface p-8 flex flex-col gap-2"
               >
-                <div className="font-display text-4xl md:text-5xl text-foreground tracking-[-0.02em]">
+                <div className="font-display text-5xl md:text-6xl text-foreground tracking-[-0.02em]">
                   <AnimatedCounter
                     value={c.value}
                     suffix={c.suffix}
                     decimals={c.decimals ?? 0}
                   />
                 </div>
-                <p className="text-foreground/80 font-body text-sm tracking-wide">
+                <p className="text-foreground/80 font-body text-base tracking-wide">
                   {c.label}
                 </p>
                 <p className="text-muted font-body text-xs leading-relaxed">
@@ -138,7 +138,7 @@ export default function SpecsSection() {
                   <span className="text-muted font-body text-xs tracking-[0.1em] uppercase shrink-0">
                     {s.label}
                   </span>
-                  <span className="text-foreground/80 font-body text-sm text-right leading-relaxed">
+                  <span className="text-foreground/80 font-body text-base text-right leading-relaxed">
                     {s.value}
                   </span>
                 </motion.div>

@@ -1,16 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0e0d0b;
-  --foreground: #f2ece0;
-  --amber: #c9801f;
-  --amber-light: #e8a23a;
-  --amber-dim: #8a5510;
-  --muted: #7a7268;
-  --muted-light: #a89f94;
-  --border: #272319;
-  --surface: #171510;
-  --surface-raised: #1f1d18;
+  /* Dark sections (hero, specs, CTA) */
+  --background: #0d0b09;
+  --foreground: #faf4e6;
+  --amber: #d4880c;
+  --amber-light: #e89c18;
+  --amber-dim: #9a6010;
+  --muted: #857a6e;
+  --muted-light: #b8afa4;
+  --border: #2a2218;
+  --surface: #181410;
+  --surface-raised: #221e18;
+
+  /* Light sections (features, social proof) */
+  --canvas: #f0e8d8;
+  --ink: #1c1810;
+  --ink-muted: #68615a;
+  --canvas-rule: #d4c6b4;
 }
 
 @theme inline {
@@ -24,6 +31,10 @@
   --color-border: var(--border);
   --color-surface: var(--surface);
   --color-surface-raised: var(--surface-raised);
+  --color-canvas: var(--canvas);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-canvas-rule: var(--canvas-rule);
   --font-display: var(--font-dm-serif);
   --font-body: var(--font-lora);
   --font-sans: var(--font-lora);

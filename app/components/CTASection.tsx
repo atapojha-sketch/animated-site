@@ -13,9 +13,9 @@ export default function CTASection() {
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full opacity-[0.06]"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full opacity-[0.1]"
           style={{
-            background: "radial-gradient(ellipse, #c9801f 0%, transparent 70%)",
+            background: "radial-gradient(ellipse, #d4880c 0%, transparent 70%)",
           }}
         />
       </div>

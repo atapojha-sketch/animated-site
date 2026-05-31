@@ -30,10 +30,10 @@ const easeOut = [0.22, 1, 0.36, 1] as const;
 
 export default function FeaturesSection() {
   return (
-    <section id="features" className="relative bg-background py-24 md:py-40">
+    <section id="features" className="relative bg-canvas py-24 md:py-40">
       {/* Top rule */}
       <div className="px-8 md:px-16">
-        <div className="h-px bg-border" />
+        <div className="h-px bg-canvas-rule" />
       </div>
 
       {/* Section header */}
@@ -47,7 +47,7 @@ export default function FeaturesSection() {
           <p className="text-amber text-xs tracking-[0.3em] uppercase font-body mb-4">
             Engineering
           </p>
-          <h2 className="font-display text-[clamp(32px,5vw,60px)] leading-[0.95] tracking-[-0.02em] text-foreground max-w-md">
+          <h2 className="font-display text-[clamp(40px,5.5vw,68px)] leading-[0.95] tracking-[-0.02em] text-ink max-w-md">
             Precision at
             <br />
             every layer.
@@ -59,17 +59,16 @@ export default function FeaturesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7, ease: easeOut, delay: 0.15 }}
-          className="text-muted font-body text-sm leading-relaxed max-w-xs"
+          className="text-ink-muted font-body text-base leading-relaxed max-w-xs"
         >
           Three systems working in concert. Each one independently exceptional, each
           one made to complement the others.
         </motion.p>
       </div>
 
-      {/* Feature grid — gap-px + bg-border on the grid parent creates 1px dividers */}
-      <div className="px-8 md:px-16 grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
+      {/* Feature grid — gap-px + bg-canvas-rule creates 1px dividers */}
+      <div className="px-8 md:px-16 grid grid-cols-1 md:grid-cols-3 gap-px bg-canvas-rule">
         {features.map((f, i) => (
-          /* Outer: scroll entrance with blur */
           <motion.div
             key={f.index}
             initial={{ opacity: 0, y: 40, filter: "blur(2px)" }}
@@ -77,29 +76,28 @@ export default function FeaturesSection() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.75, ease: easeOut, delay: i * 0.1 }}
           >
-            {/* Inner: spring hover lift + CSS shadow */}
             <motion.div
               whileHover={{ y: -4 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="bg-background p-8 md:p-10 flex flex-col gap-6 group h-full hover:shadow-[0_20px_40px_-8px_rgba(201,128,31,0.08)] transition-shadow duration-300"
+              className="bg-canvas p-8 md:p-10 flex flex-col gap-6 group h-full hover:shadow-[0_20px_40px_-8px_rgba(212,136,12,0.18)] transition-shadow duration-300"
             >
               <div className="flex items-start justify-between">
                 <span className="text-amber text-xs tracking-[0.25em] font-body">
                   {f.index}
                 </span>
-                <div className="w-1.5 h-1.5 rounded-full bg-amber/30 group-hover:bg-amber transition-colors duration-500" />
+                <div className="w-1.5 h-1.5 rounded-full bg-amber/40 group-hover:bg-amber transition-colors duration-500" />
               </div>
 
-              <h3 className="font-display text-2xl md:text-3xl leading-[1.05] tracking-[-0.01em] text-foreground whitespace-pre-line">
+              <h3 className="font-display text-2xl md:text-3xl leading-[1.05] tracking-[-0.01em] text-ink whitespace-pre-line">
                 {f.title}
               </h3>
 
-              <p className="text-muted-light font-body text-sm leading-relaxed flex-1">
+              <p className="text-ink-muted font-body text-base leading-relaxed flex-1">
                 {f.description}
               </p>
 
-              <div className="pt-4 border-t border-border">
-                <span className="text-[11px] tracking-[0.2em] text-amber/60 uppercase font-body">
+              <div className="pt-4 border-t border-canvas-rule">
+                <span className="text-xs tracking-[0.2em] text-amber/70 uppercase font-body">
                   {f.detail}
                 </span>
               </div>
@@ -108,7 +106,7 @@ export default function FeaturesSection() {
         ))}
       </div>
 
-      {/* Exploded view caption */}
+      {/* Caption */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -116,8 +114,8 @@ export default function FeaturesSection() {
         transition={{ duration: 1, ease: easeOut, delay: 0.4 }}
         className="px-8 md:px-16 mt-12 flex items-center gap-4"
       >
-        <div className="w-6 h-px bg-border" />
-        <p className="text-[11px] tracking-[0.2em] text-muted uppercase font-body">
+        <div className="w-6 h-px bg-canvas-rule" />
+        <p className="text-xs tracking-[0.2em] text-ink-muted uppercase font-body">
           Six discrete layers. One unified experience.
         </p>
       </motion.div>
