@@ -44,7 +44,7 @@ export default function WarrantyPage() {
           </Link>
           <Link
             href="/order"
-            className="text-xs tracking-[0.18em] text-foreground/50 uppercase border border-foreground/20 px-5 py-2.5 hover:border-amber hover:text-foreground transition-colors duration-300"
+            className="text-xs tracking-[0.18em] text-foreground/50 uppercase border border-foreground/20 px-5 py-2.5 hover:border-emerald hover:text-foreground transition-colors duration-300"
           >
             Order — $289
           </Link>
@@ -55,7 +55,7 @@ export default function WarrantyPage() {
 
         {/* Header */}
         <div className="mb-16">
-          <p className="text-amber text-xs tracking-[0.3em] uppercase font-body mb-4">
+          <p className="text-emerald text-xs tracking-[0.3em] uppercase font-body mb-4">
             Forge Keyboards
           </p>
           <h1 className="font-display text-[clamp(36px,5vw,72px)] leading-[0.93] tracking-[-0.025em] text-foreground mb-6">
@@ -92,7 +92,7 @@ export default function WarrantyPage() {
           <Link href="/returns" className="text-xs tracking-[0.18em] text-muted hover:text-foreground uppercase font-body transition-colors duration-200">
             Returns policy
           </Link>
-          <Link href="/order" className="text-xs tracking-[0.18em] text-amber hover:text-amber-light uppercase font-body transition-colors duration-200">
+          <Link href="/order" className="text-xs tracking-[0.18em] text-emerald hover:text-emerald-light uppercase font-body transition-colors duration-200">
             Order now →
           </Link>
         </div>

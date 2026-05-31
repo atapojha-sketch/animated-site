@@ -1,31 +1,37 @@
 @import "tailwindcss";
 
 :root {
-  /* Dark sections (hero, specs, CTA) */
-  --background: #0d0b09;
-  --foreground: #faf4e6;
-  --amber: #d4880c;
-  --amber-light: #e89c18;
-  --amber-dim: #9a6010;
-  --muted: #857a6e;
-  --muted-light: #b8afa4;
-  --border: #2a2218;
-  --surface: #181410;
-  --surface-raised: #221e18;
+  /* Bold Jewel Tones */
+  --background: #0a0a0f;
+  --foreground: #ffffff;
+  --emerald: #00d98e;
+  --emerald-light: #33ff9f;
+  --sapphire: #0066ff;
+  --sapphire-light: #4d94ff;
+  --ruby: #ff1744;
+  --gold: #ffd700;
+  --muted: #9ca3af;
+  --muted-light: #e5e7eb;
+  --border: #1a1a28;
+  --surface: #0f0f1a;
+  --surface-raised: #1a1a2e;
 
   /* Light sections (features, social proof) */
-  --canvas: #f0e8d8;
-  --ink: #1c1810;
-  --ink-muted: #68615a;
-  --canvas-rule: #d4c6b4;
+  --canvas: #0f0f1a;
+  --ink: #ffffff;
+  --ink-muted: #d1d5db;
+  --canvas-rule: #2a2a3e;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-amber: var(--amber);
-  --color-amber-light: var(--amber-light);
-  --color-amber-dim: var(--amber-dim);
+  --color-emerald: var(--emerald);
+  --color-emerald-light: var(--emerald-light);
+  --color-sapphire: var(--sapphire);
+  --color-sapphire-light: var(--sapphire-light);
+  --color-ruby: var(--ruby);
+  --color-gold: var(--gold);
   --color-muted: var(--muted);
   --color-muted-light: var(--muted-light);
   --color-border: var(--border);
@@ -68,11 +74,56 @@ body {
   bottom: -2px;
   left: 0;
   width: 100%;
-  height: 1px;
-  background: currentColor;
+  height: 2px;
+  background: linear-gradient(90deg, var(--emerald), var(--sapphire));
   clip-path: inset(0 100% 0 0);
   transition: clip-path 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .link-underline:hover::after {
   clip-path: inset(0 0% 0 0);
 }
+
+/* Glowing effects for buttons */
+.btn-emerald {
+  background: var(--emerald);
+  color: var(--background);
+  box-shadow: 0 0 20px rgba(0, 217, 142, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+.btn-emerald:hover {
+  background: var(--emerald-light);
+  box-shadow: 0 0 30px rgba(0, 217, 142, 0.6), 0 0 60px rgba(0, 217, 142, 0.3);
+}
+
+.btn-sapphire {
+  background: var(--sapphire);
+  color: var(--foreground);
+  box-shadow: 0 0 20px rgba(0, 102, 255, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+.btn-sapphire:hover {
+  background: var(--sapphire-light);
+  box-shadow: 0 0 30px rgba(0, 102, 255, 0.6), 0 0 60px rgba(0, 102, 255, 0.3);
+}
+
+/* Gradient dividers */
+.gradient-divider {
+  background: linear-gradient(90deg, transparent, var(--emerald), var(--sapphire), transparent);
+}
+
+/* Throb animation */
+@keyframes throb {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(0, 217, 142, 0.3);
+  }
+  50% {
+    opacity: 0.7;
+    text-shadow: 0 0 20px rgba(0, 217, 142, 0.6);
+  }
+}
+
+.forge-logo {
+  animation: throb 2.5s ease-in-out infinite;
+}
+

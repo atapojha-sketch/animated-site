@@ -99,12 +99,12 @@ export default function HeroSection() {
           style={{ opacity: navOpacity }}
           className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-8 md:px-16 py-7"
         >
-          <span className="font-display text-base tracking-[0.25em] text-foreground/90 uppercase">
+          <span className="forge-logo font-display text-2xl md:text-3xl font-bold tracking-[0.25em] text-foreground uppercase">
             Forge
           </span>
           <a
             href="/order"
-            className="link-underline text-xs tracking-[0.18em] text-foreground/50 uppercase border border-foreground/20 px-5 py-2.5 hover:border-amber hover:text-foreground transition-colors duration-300"
+            className="link-underline text-xs tracking-[0.18em] text-foreground/50 uppercase border border-foreground/20 px-5 py-2.5 hover:border-emerald hover:text-foreground transition-colors duration-300"
           >
             Order — $289
           </a>
@@ -122,9 +122,9 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: EASE, delay: 0 }}
-              className="text-amber text-xs tracking-[0.3em] uppercase mb-5 font-body"
+              className="text-emerald text-xs tracking-[0.3em] uppercase mb-5 font-body"
             >
-              Forge TKL — 2025
+              Forge TKL — 2026
             </motion.p>
 
             {/* Headline */}
@@ -163,7 +163,7 @@ export default function HeroSection() {
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                className="inline-block bg-amber text-background text-xs tracking-[0.2em] uppercase px-8 py-4 font-body hover:bg-amber-light transition-colors duration-300"
+                className="inline-block bg-emerald text-background text-xs tracking-[0.2em] uppercase px-8 py-4 font-body hover:bg-emerald-light transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(0,217,142,0.5)]"
               >
                 Order Now
               </motion.a>
@@ -184,7 +184,7 @@ export default function HeroSection() {
         >
           <div className="w-px h-12 bg-foreground/20 relative overflow-hidden">
             <motion.div
-              className="absolute inset-x-0 top-0 h-1/2 bg-amber"
+              className="absolute inset-x-0 top-0 h-1/2 bg-emerald shadow-[0_0_10px_rgba(0,217,142,0.8)]"
               animate={{ y: ["-100%", "200%"] }}
               transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
             />

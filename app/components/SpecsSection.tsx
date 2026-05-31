@@ -57,18 +57,18 @@ const easeOut = [0.22, 1, 0.36, 1] as const;
 
 export default function SpecsSection() {
   return (
-    <section className="relative bg-surface py-24 md:py-40">
+    <section className="relative bg-surface py-16 md:py-28">
       <div className="px-8 md:px-16">
         {/* Section header */}
-        <div className="h-px bg-border mb-16 md:mb-20" />
+        <div className="h-px bg-border mb-12 md:mb-16" />
 
-        <div className="mb-16 md:mb-24">
+        <div className="mb-12 md:mb-16">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.6, ease: easeOut }}
-            className="text-amber text-xs tracking-[0.3em] uppercase font-body mb-4"
+            className="text-emerald text-xs tracking-[0.3em] uppercase font-body mb-4"
           >
             Specifications
           </motion.p>

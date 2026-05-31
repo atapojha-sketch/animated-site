@@ -7,27 +7,27 @@ const easeOut = [0.22, 1, 0.36, 1] as const;
 export default function CTASection() {
   return (
     <section id="cta" className="relative bg-surface overflow-hidden">
-      {/* Amber accent line at top */}
-      <div className="h-px bg-amber/30" />
+      {/* Emerald accent line at top */}
+      <div className="h-px bg-gradient-to-r from-emerald/0 via-emerald/40 to-emerald/0" />
 
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full opacity-[0.1]"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full opacity-[0.12]"
           style={{
-            background: "radial-gradient(ellipse, #d4880c 0%, transparent 70%)",
+            background: "radial-gradient(ellipse, #00d98e 0%, transparent 70%)",
           }}
         />
       </div>
 
-      <div className="relative px-8 md:px-16 py-24 md:py-40">
+      <div className="relative px-8 md:px-16 py-16 md:py-28">
         {/* Pre-headline */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, ease: easeOut }}
-          className="text-amber text-xs tracking-[0.3em] uppercase font-body mb-6"
+          className="text-emerald text-xs tracking-[0.3em] uppercase font-body mb-6"
         >
           Limited first run — 500 units
         </motion.p>
@@ -82,7 +82,7 @@ export default function CTASection() {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="inline-flex items-center justify-center gap-3 bg-amber hover:bg-amber-light text-background text-sm tracking-[0.15em] uppercase font-body px-10 py-5 transition-colors duration-300 group"
+              className="inline-flex items-center justify-center gap-3 bg-emerald hover:bg-emerald-light text-background text-sm tracking-[0.15em] uppercase font-body px-10 py-5 transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(0,217,142,0.5)] group"
             >
               Order Now
               <svg
@@ -102,7 +102,7 @@ export default function CTASection() {
               </svg>
             </motion.a>
             <p className="text-xs text-muted font-body text-center sm:text-left">
-              Estimated shipping Q3 2025
+              Estimated shipping Q4 2026
             </p>
           </div>
         </motion.div>
@@ -113,13 +113,13 @@ export default function CTASection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: easeOut, delay: 0.5 }}
-          className="mt-24 pt-8 border-t border-border flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+          className="mt-16 pt-6 border-t border-border flex flex-col md:flex-row md:items-center md:justify-between gap-4"
         >
           <span className="font-display text-sm tracking-[0.3em] text-foreground/30 uppercase">
             Forge
           </span>
           <p className="text-[11px] tracking-[0.15em] text-muted font-body">
-            © 2025 Forge Keyboards. Designed and assembled in-house.
+            © 2026 Forge Keyboards. Designed and assembled in-house.
           </p>
           <div className="flex gap-6">
             {[

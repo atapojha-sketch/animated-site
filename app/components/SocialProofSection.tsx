@@ -41,19 +41,19 @@ const easeOut = [0.22, 1, 0.36, 1] as const;
 
 export default function SocialProofSection() {
   return (
-    <section className="relative bg-canvas py-24 md:py-40 overflow-hidden">
+    <section className="relative bg-canvas py-16 md:py-28 overflow-hidden">
       <div className="px-8 md:px-16">
-        <div className="h-px bg-canvas-rule mb-16 md:mb-20" />
+        <div className="h-px bg-canvas-rule mb-12 md:mb-16" />
 
         {/* Header row */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 md:mb-20">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.7, ease: easeOut }}
           >
-            <p className="text-amber text-xs tracking-[0.3em] uppercase font-body mb-4">
+            <p className="text-emerald text-xs tracking-[0.3em] uppercase font-body mb-4">
               Press & Community
             </p>
             <h2 className="font-display text-[clamp(40px,5.5vw,68px)] leading-[0.95] tracking-[-0.02em] text-ink">
@@ -74,7 +74,7 @@ export default function SocialProofSection() {
               <svg key={i} width="16" height="16" viewBox="0 0 14 14" fill="none">
                 <path
                   d="M7 1l1.545 3.13L12 4.635l-2.5 2.435.59 3.44L7 8.9l-3.09 1.61.59-3.44L2 4.635l3.455-.505L7 1z"
-                  fill="#d4880c"
+                  fill="#00d98e"
                 />
               </svg>
             ))}
@@ -101,7 +101,7 @@ export default function SocialProofSection() {
                   <svg key={j} width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path
                       d="M7 1l1.545 3.13L12 4.635l-2.5 2.435.59 3.44L7 8.9l-3.09 1.61.59-3.44L2 4.635l3.455-.505L7 1z"
-                      fill="#d4880c"
+                      fill="#00d98e"
                     />
                   </svg>
                 ))}
@@ -118,7 +118,7 @@ export default function SocialProofSection() {
                   <p className="font-body text-sm text-ink/70">{r.author}</p>
                   <p className="font-body text-xs text-ink-muted mt-0.5">{r.handle}</p>
                 </div>
-                <span className="text-xs tracking-[0.2em] text-amber/80 uppercase font-body">
+                <span className="text-xs tracking-[0.2em] text-emerald/80 uppercase font-body">
                   {r.publication}
                 </span>
               </div>

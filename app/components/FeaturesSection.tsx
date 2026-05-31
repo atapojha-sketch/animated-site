@@ -30,21 +30,21 @@ const easeOut = [0.22, 1, 0.36, 1] as const;
 
 export default function FeaturesSection() {
   return (
-    <section id="features" className="relative bg-canvas py-24 md:py-40">
+    <section id="features" className="relative bg-canvas py-16 md:py-28">
       {/* Top rule */}
       <div className="px-8 md:px-16">
         <div className="h-px bg-canvas-rule" />
       </div>
 
       {/* Section header */}
-      <div className="px-8 md:px-16 mt-16 md:mt-20 mb-16 md:mb-24 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+      <div className="px-8 md:px-16 mt-10 md:mt-14 mb-12 md:mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7, ease: easeOut }}
         >
-          <p className="text-amber text-xs tracking-[0.3em] uppercase font-body mb-4">
+          <p className="text-emerald text-xs tracking-[0.3em] uppercase font-body mb-4">
             Engineering
           </p>
           <h2 className="font-display text-[clamp(40px,5.5vw,68px)] leading-[0.95] tracking-[-0.02em] text-ink max-w-md">
@@ -79,13 +79,13 @@ export default function FeaturesSection() {
             <motion.div
               whileHover={{ y: -4 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="bg-canvas p-8 md:p-10 flex flex-col gap-6 group h-full hover:shadow-[0_20px_40px_-8px_rgba(212,136,12,0.18)] transition-shadow duration-300"
+              className="bg-canvas p-8 md:p-10 flex flex-col gap-6 group h-full hover:shadow-[0_20px_40px_-8px_rgba(0,217,142,0.18)] transition-shadow duration-300"
             >
               <div className="flex items-start justify-between">
-                <span className="text-amber text-xs tracking-[0.25em] font-body">
+                <span className="text-emerald text-xs tracking-[0.25em] font-body">
                   {f.index}
                 </span>
-                <div className="w-1.5 h-1.5 rounded-full bg-amber/40 group-hover:bg-amber transition-colors duration-500" />
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald/40 group-hover:bg-emerald transition-colors duration-500" />
               </div>
 
               <h3 className="font-display text-2xl md:text-3xl leading-[1.05] tracking-[-0.01em] text-ink whitespace-pre-line">
@@ -97,7 +97,7 @@ export default function FeaturesSection() {
               </p>
 
               <div className="pt-4 border-t border-canvas-rule">
-                <span className="text-xs tracking-[0.2em] text-amber/70 uppercase font-body">
+                <span className="text-xs tracking-[0.2em] text-emerald/70 uppercase font-body">
                   {f.detail}
                 </span>
               </div>

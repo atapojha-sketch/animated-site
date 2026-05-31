@@ -79,7 +79,7 @@ export default function OrderPage() {
               transition={{ duration: 0.7, ease: EASE }}
               className="mb-12"
             >
-              <p className="text-amber text-xs tracking-[0.3em] uppercase font-body mb-3">
+              <p className="text-emerald text-xs tracking-[0.3em] uppercase font-body mb-3">
                 Configure your Forge TKL
               </p>
               <h1 className="font-display text-[clamp(32px,4vw,56px)] leading-[0.95] tracking-[-0.02em]">
@@ -140,13 +140,13 @@ export default function OrderPage() {
                     {switchId === sw.id && (
                       <motion.div
                         layoutId="switch-dot"
-                        className="absolute top-3.5 right-3.5 w-1.5 h-1.5 rounded-full bg-amber"
+                        className="absolute top-3.5 right-3.5 w-1.5 h-1.5 rounded-full bg-emerald shadow-[0_0_8px_rgba(0,217,142,0.8)]"
                         transition={{ type: "spring", stiffness: 500, damping: 35 }}
                       />
                     )}
                     <p className="font-body text-sm text-foreground mb-1">{sw.name}</p>
                     <p className="font-body text-xs text-muted leading-snug">{sw.detail}</p>
-                    <p className="font-body text-[10px] text-amber/50 mt-2.5 tracking-[0.15em]">
+                    <p className="font-body text-[10px] text-emerald/60 mt-2.5 tracking-[0.15em]">
                       {sw.spec}
                     </p>
                   </button>
@@ -171,7 +171,7 @@ export default function OrderPage() {
                     onClick={() => setColorId(c.id)}
                     className="flex items-center gap-3 px-4 py-3 border transition-colors duration-200"
                     style={{
-                      borderColor: colorId === c.id ? "#c9801f" : "#272319",
+                      borderColor: colorId === c.id ? "#00d98e" : "#272319",
                       background:  colorId === c.id ? "#1f1d18" : "transparent",
                     }}
                   >
@@ -217,7 +217,7 @@ export default function OrderPage() {
                       <div className="flex items-center gap-4 shrink-0 ml-6">
                         <span className="font-body text-sm text-foreground/60">+${addon.price}</span>
                         <motion.div
-                          animate={{ backgroundColor: active ? "#c9801f" : "transparent", borderColor: active ? "#c9801f" : "#272319" }}
+                          animate={{ backgroundColor: active ? "#00d98e" : "transparent", borderColor: active ? "#00d98e" : "#272319" }}
                           transition={{ duration: 0.15 }}
                           className="w-4 h-4 border flex items-center justify-center shrink-0"
                         >
@@ -231,7 +231,7 @@ export default function OrderPage() {
                                 transition={{ duration: 0.15 }}
                                 width="10" height="8" viewBox="0 0 10 8" fill="none"
                               >
-                                <path d="M1 4l3 3 5-6" stroke="#0e0d0b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d="M1 4l3 3 5-6" stroke="#0a0a0f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                               </motion.svg>
                             )}
                           </AnimatePresence>
@@ -299,7 +299,7 @@ export default function OrderPage() {
 
                       <div className="flex justify-between items-baseline">
                         <span className="font-body text-xs text-muted">Shipping</span>
-                        <span className="font-body text-xs text-amber">Free</span>
+                        <span className="font-body text-xs text-emerald">Free</span>
                       </div>
                     </div>
 
@@ -331,12 +331,12 @@ export default function OrderPage() {
                             whileTap={{ scale: 0.98 }}
                             transition={{ type: "spring", stiffness: 400, damping: 17 }}
                             onClick={() => setStep("details")}
-                            className="w-full bg-amber hover:bg-amber-light text-background text-xs tracking-[0.2em] uppercase font-body py-4 transition-colors duration-300"
+                            className="w-full bg-emerald hover:bg-emerald-light text-background text-xs tracking-[0.2em] uppercase font-body py-4 transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(0,217,142,0.5)]"
                           >
                             Continue to details →
                           </motion.button>
                           <p className="text-[10px] text-muted font-body text-center mt-4 leading-relaxed">
-                            No payment taken today · Estimated dispatch Q3 2025
+                            No payment taken today · Estimated dispatch Q4 2026
                           </p>
                         </motion.div>
 
@@ -362,7 +362,7 @@ export default function OrderPage() {
                                 value={form[f.id]}
                                 onChange={e => setForm(p => ({ ...p, [f.id]: e.target.value }))}
                                 placeholder={f.label}
-                                className="w-full bg-background border border-border px-4 py-3 text-sm font-body text-foreground placeholder-muted/30 focus:outline-none focus:border-amber transition-colors duration-200"
+                                className="w-full bg-background border border-border px-4 py-3 text-sm font-body text-foreground placeholder-muted/30 focus:outline-none focus:border-emerald focus:shadow-[0_0_10px_rgba(0,217,142,0.3)] transition-all duration-200"
                               />
                             </div>
                           ))}
@@ -380,7 +380,7 @@ export default function OrderPage() {
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
                               transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                              className="flex-1 bg-amber hover:bg-amber-light text-background text-xs tracking-[0.2em] uppercase font-body py-4 transition-colors duration-300"
+                              className="flex-1 bg-emerald hover:bg-emerald-light text-background text-xs tracking-[0.2em] uppercase font-body py-4 transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(0,217,142,0.5)]"
                             >
                               Place order — ${total}
                             </motion.button>
@@ -408,10 +408,10 @@ export default function OrderPage() {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.15 }}
-                      className="w-14 h-14 rounded-full bg-amber/10 border border-amber/30 flex items-center justify-center mx-auto mb-7"
+                      className="w-14 h-14 rounded-full bg-emerald/10 border border-emerald/30 flex items-center justify-center mx-auto mb-7 shadow-[0_0_20px_rgba(0,217,142,0.2)]"
                     >
                       <svg width="20" height="16" viewBox="0 0 20 16" fill="none">
-                        <path d="M1 8l6 6L19 1" stroke="#c9801f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M1 8l6 6L19 1" stroke="#00d98e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </motion.div>
 
@@ -443,7 +443,7 @@ export default function OrderPage() {
                         </div>
                         <div className="flex justify-between">
                           <span className="font-body text-xs text-muted">Est. dispatch</span>
-                          <span className="font-body text-xs text-amber">Q3 2025</span>
+                          <span className="font-body text-xs text-emerald">Q4 2026</span>
                         </div>
                       </div>
                       <Link
