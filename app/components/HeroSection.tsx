@@ -78,7 +78,7 @@ export default function HeroSection() {
           {/* Video — top: -20px gives 20px headroom so parallax never shows a gap */}
           <motion.video
             ref={videoRef}
-            src="/reveal.mp4.mp4"
+            src="/reveal.mp4"
             muted
             playsInline
             preload="auto"
