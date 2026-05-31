@@ -1,12 +1,16 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 import {
   motion,
   useScroll,
   useTransform,
   useMotionValueEvent,
+  useMotionValue,
+  useSpring,
 } from "motion/react";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -17,7 +21,7 @@ export default function HeroSection() {
     offset: ["start start", "end start"],
   });
 
-  // Scrub video currentTime with scroll
+  // Scroll-scrub video
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     const video = videoRef.current;
     if (!video) return;
@@ -26,27 +30,55 @@ export default function HeroSection() {
     video.currentTime = latest * dur;
   });
 
+  // Scroll-driven transforms
   const copyOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
   const copyY = useTransform(scrollYProgress, [0, 0.25], [0, -48]);
   const navOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const scrollIndicatorOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.1],
-    [1, 0]
+  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  // Parallax: video drifts 20px down; top: -20px buffer prevents gap at top
+  const videoY = useTransform(scrollYProgress, [0, 1], [0, 20]);
+
+  // 3D tilt: normalized mouse position (−0.5 to 0.5) → ±6° rotation
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const rotateXRaw = useTransform(mouseY, [-0.5, 0.5], [6, -6]);
+  const rotateYRaw = useTransform(mouseX, [-0.5, 0.5], [-6, 6]);
+  const rotateX = useSpring(rotateXRaw, { stiffness: 300, damping: 40 });
+  const rotateY = useSpring(rotateYRaw, { stiffness: 300, damping: 40 });
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+      mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+    },
+    [mouseX, mouseY]
   );
+
+  const handleMouseLeave = useCallback(() => {
+    mouseX.set(0);
+    mouseY.set(0);
+  }, [mouseX, mouseY]);
 
   return (
     <section ref={containerRef} className="relative h-[300vh]">
-      {/* Sticky viewport */}
-      <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Video */}
-        <video
+      {/* perspective parent required for rotateX/Y to produce a 3D effect */}
+      <div
+        className="sticky top-0 h-screen overflow-hidden"
+        style={{ perspective: "1200px" }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
+        {/* Video — top: -20px gives 20px headroom so parallax never shows a gap */}
+        <motion.video
           ref={videoRef}
           src="/reveal.mp4.mp4"
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover"
+          aria-label="Forge TKL mechanical keyboard exploded assembly view"
+          style={{ y: videoY, rotateX, rotateY, top: "-20px", height: "calc(100% + 20px)" }}
+          className="absolute left-0 right-0 w-full object-cover"
         />
 
         {/* Dark vignette — stronger at bottom */}
@@ -65,46 +97,78 @@ export default function HeroSection() {
           </span>
           <a
             href="#cta"
-            className="text-xs tracking-[0.18em] text-foreground/50 uppercase border border-foreground/20 px-5 py-2.5 hover:border-amber hover:text-foreground transition-colors duration-300"
+            className="link-underline text-xs tracking-[0.18em] text-foreground/50 uppercase border border-foreground/20 px-5 py-2.5 hover:border-amber hover:text-foreground transition-colors duration-300"
           >
             Order — $289
           </a>
         </motion.nav>
 
-        {/* Hero copy */}
-        <motion.div
-          style={{ opacity: copyOpacity, y: copyY }}
-          className="absolute bottom-16 left-0 right-0 px-8 md:px-16"
-        >
-          <p className="text-amber text-xs tracking-[0.3em] uppercase mb-5 font-body">
-            Forge TKL — 2025
-          </p>
-          <h1 className="font-display text-5xl md:text-7xl lg:text-[88px] leading-[0.93] tracking-[-0.025em] text-foreground max-w-2xl">
-            Every keystroke,
-            <br />
-            <em>engineered.</em>
-          </h1>
-          <p className="mt-7 text-muted-light font-body text-base md:text-lg max-w-sm leading-relaxed">
-            CNC-machined aluminum. Hot-swap switches.
-            <br />
-            Built for those who refuse to compromise.
-          </p>
+        {/* Hero copy
+            Outer div: positioning.
+            Scroll-exit wrapper (motion.div): drives opacity + y as user scrolls.
+            Inner elements: independent staggered entrance — no conflict because
+            the wrapper starts at opacity=1 / y=0 when scrollYProgress=0. */}
+        <div className="absolute bottom-16 left-0 right-0 px-8 md:px-16">
+          <motion.div style={{ opacity: copyOpacity, y: copyY }}>
+            {/* Eyebrow */}
+            <motion.p
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: EASE, delay: 0 }}
+              className="text-amber text-xs tracking-[0.3em] uppercase mb-5 font-body"
+            >
+              Forge TKL — 2025
+            </motion.p>
 
-          <div className="mt-8 flex items-center gap-6">
-            <a
-              href="#cta"
-              className="inline-block bg-amber text-background text-xs tracking-[0.2em] uppercase px-8 py-4 font-body hover:bg-amber-light transition-colors duration-300"
+            {/* Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
+              className="font-display text-[40px] sm:text-5xl md:text-7xl lg:text-[88px] leading-[0.93] tracking-[-0.025em] text-foreground max-w-2xl"
             >
-              Order Now
-            </a>
-            <a
-              href="#features"
-              className="text-xs tracking-[0.2em] text-muted-light uppercase hover:text-foreground transition-colors duration-300"
+              Every keystroke,
+              <br />
+              <em>engineered.</em>
+            </motion.h1>
+
+            {/* Subheadline — 0.15s stagger after headline (0.1 + 0.15 = 0.25) */}
+            <motion.p
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: EASE, delay: 0.25 }}
+              className="mt-7 text-muted-light font-body text-base md:text-lg max-w-sm leading-relaxed"
             >
-              Explore
-            </a>
-          </div>
-        </motion.div>
+              CNC-machined aluminum. Hot-swap switches.
+              <br />
+              Built for those who refuse to compromise.
+            </motion.p>
+
+            {/* CTA row */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: EASE, delay: 0.38 }}
+              className="mt-8 flex items-center gap-6"
+            >
+              <motion.a
+                href="#cta"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                className="inline-block bg-amber text-background text-xs tracking-[0.2em] uppercase px-8 py-4 font-body hover:bg-amber-light transition-colors duration-300"
+              >
+                Order Now
+              </motion.a>
+              <a
+                href="#features"
+                className="link-underline text-xs tracking-[0.2em] text-muted-light uppercase hover:text-foreground transition-colors duration-300"
+              >
+                Explore
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
 
         {/* Scroll indicator */}
         <motion.div

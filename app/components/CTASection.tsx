@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 
-const easeOut = [0.16, 1, 0.3, 1] as const;
+const easeOut = [0.22, 1, 0.36, 1] as const;
 
 export default function CTASection() {
   return (
@@ -77,7 +77,12 @@ export default function CTASection() {
           </div>
 
           <div className="flex flex-col gap-3 sm:ml-8">
-            <button className="inline-flex items-center justify-center gap-3 bg-amber hover:bg-amber-light text-background text-sm tracking-[0.15em] uppercase font-body px-10 py-5 transition-colors duration-300 group">
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              className="inline-flex items-center justify-center gap-3 bg-amber hover:bg-amber-light text-background text-sm tracking-[0.15em] uppercase font-body px-10 py-5 transition-colors duration-300 group"
+            >
               Order Now
               <svg
                 width="16"
@@ -94,7 +99,7 @@ export default function CTASection() {
                   strokeLinejoin="round"
                 />
               </svg>
-            </button>
+            </motion.button>
             <p className="text-xs text-muted font-body text-center sm:text-left">
               Estimated shipping Q3 2025
             </p>
@@ -106,7 +111,7 @@ export default function CTASection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+          transition={{ duration: 1, ease: easeOut, delay: 0.5 }}
           className="mt-24 pt-8 border-t border-border flex flex-col md:flex-row md:items-center md:justify-between gap-4"
         >
           <span className="font-display text-sm tracking-[0.3em] text-foreground/30 uppercase">
@@ -120,7 +125,7 @@ export default function CTASection() {
               <a
                 key={item}
                 href="#"
-                className="text-[11px] tracking-[0.18em] text-muted hover:text-foreground/60 uppercase font-body transition-colors duration-200"
+                className="link-underline text-[11px] tracking-[0.18em] text-muted hover:text-foreground/60 uppercase font-body transition-colors duration-200"
               >
                 {item}
               </a>

@@ -20,8 +20,8 @@ function AnimatedCounter({ value, suffix = "", decimals = 0 }: CounterProps) {
   useEffect(() => {
     if (!isInView) return;
     const controls = animate(motionVal, value, {
-      duration: 1.8,
-      ease: [0.16, 1, 0.3, 1],
+      duration: 1.2,
+      ease: "easeOut",
     });
     return () => controls.stop();
   }, [isInView, motionVal, value]);
@@ -53,7 +53,7 @@ const specs = [
   { label: "Dimensions", value: "357 × 130 × 38mm" },
 ];
 
-const easeOut = [0.16, 1, 0.3, 1] as const;
+const easeOut = [0.22, 1, 0.36, 1] as const;
 
 export default function SpecsSection() {
   return (
@@ -91,8 +91,8 @@ export default function SpecsSection() {
             {counters.map((c, i) => (
               <motion.div
                 key={c.label}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 24, filter: "blur(4px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 0.65, ease: easeOut, delay: i * 0.1 }}
                 className="bg-surface p-8 flex flex-col gap-2"
@@ -132,7 +132,7 @@ export default function SpecsSection() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.4, ease: "easeOut", delay: 0.3 + i * 0.05 }}
+                  transition={{ duration: 0.4, ease: easeOut, delay: 0.3 + i * 0.05 }}
                   className="flex items-baseline justify-between py-4 gap-4"
                 >
                   <span className="text-muted font-body text-xs tracking-wider uppercase shrink-0">

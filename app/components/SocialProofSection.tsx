@@ -37,7 +37,7 @@ const reviews = [
   },
 ];
 
-const easeOut = [0.16, 1, 0.3, 1] as const;
+const easeOut = [0.22, 1, 0.36, 1] as const;
 
 export default function SocialProofSection() {
   return (
@@ -67,7 +67,7 @@ export default function SocialProofSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            transition={{ duration: 0.6, ease: easeOut, delay: 0.2 }}
             className="flex items-center gap-2"
           >
             {[...Array(5)].map((_, i) => (
@@ -89,8 +89,8 @@ export default function SocialProofSection() {
           {reviews.map((r, i) => (
             <motion.div
               key={r.handle}
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 32, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.7, ease: easeOut, delay: i * 0.1 }}
               className="bg-background p-8 md:p-10 flex flex-col justify-between gap-8 group"
