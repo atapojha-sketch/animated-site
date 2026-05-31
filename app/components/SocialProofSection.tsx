@@ -56,7 +56,7 @@ export default function SocialProofSection() {
             <p className="text-amber text-xs tracking-[0.3em] uppercase font-body mb-4">
               Press & Community
             </p>
-            <h2 className="font-display text-4xl md:text-5xl leading-[0.95] tracking-[-0.02em] text-foreground">
+            <h2 className="font-display text-[clamp(28px,4vw,48px)] leading-[0.95] tracking-[-0.02em] text-foreground">
               Heard the
               <br />
               <em>difference.</em>
@@ -89,7 +89,7 @@ export default function SocialProofSection() {
           {reviews.map((r, i) => (
             <motion.div
               key={r.handle}
-              initial={{ opacity: 0, y: 32, filter: "blur(4px)" }}
+              initial={{ opacity: 0, y: 32, filter: "blur(2px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.7, ease: easeOut, delay: i * 0.1 }}

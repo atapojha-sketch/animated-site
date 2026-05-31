@@ -47,7 +47,7 @@ export default function FeaturesSection() {
           <p className="text-amber text-xs tracking-[0.3em] uppercase font-body mb-4">
             Engineering
           </p>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-[-0.02em] text-foreground max-w-md">
+          <h2 className="font-display text-[clamp(32px,5vw,60px)] leading-[0.95] tracking-[-0.02em] text-foreground max-w-md">
             Precision at
             <br />
             every layer.
@@ -72,7 +72,7 @@ export default function FeaturesSection() {
           /* Outer: scroll entrance with blur */
           <motion.div
             key={f.index}
-            initial={{ opacity: 0, y: 40, filter: "blur(4px)" }}
+            initial={{ opacity: 0, y: 40, filter: "blur(2px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.75, ease: easeOut, delay: i * 0.1 }}
@@ -94,7 +94,7 @@ export default function FeaturesSection() {
                 {f.title}
               </h3>
 
-              <p className="text-muted font-body text-sm leading-relaxed flex-1">
+              <p className="text-muted-light font-body text-sm leading-relaxed flex-1">
                 {f.description}
               </p>
 

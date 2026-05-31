@@ -15,19 +15,25 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const rafRef = useRef<number | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
 
-  // Scroll-scrub video
+  // Scroll-scrub video — rAF-batched so we seek at most once per display frame
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const video = videoRef.current;
-    if (!video) return;
-    const dur = video.duration;
-    if (!dur || !isFinite(dur)) return;
-    video.currentTime = latest * dur;
+    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      const video = videoRef.current;
+      if (!video?.duration || !isFinite(video.duration)) return;
+      const target = latest * video.duration;
+      type V = HTMLVideoElement & { fastSeek?: (t: number) => void };
+      const v = video as V;
+      v.fastSeek ? v.fastSeek(target) : (video.currentTime = target);
+      rafRef.current = null;
+    });
   });
 
   // Scroll-driven transforms
@@ -62,24 +68,25 @@ export default function HeroSection() {
 
   return (
     <section ref={containerRef} className="relative h-[300vh]">
-      {/* perspective parent required for rotateX/Y to produce a 3D effect */}
       <div
         className="sticky top-0 h-screen overflow-hidden"
-        style={{ perspective: "1200px" }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Video — top: -20px gives 20px headroom so parallax never shows a gap */}
-        <motion.video
-          ref={videoRef}
-          src="/reveal.mp4.mp4"
-          muted
-          playsInline
-          preload="auto"
-          aria-label="Forge TKL mechanical keyboard exploded assembly view"
-          style={{ y: videoY, rotateX, rotateY, top: "-20px", height: "calc(100% + 20px)" }}
-          className="absolute left-0 right-0 w-full object-cover"
-        />
+        {/* Perspective scoped to video only — avoids promoting every child to 3D compositing layer */}
+        <div className="absolute inset-0" style={{ perspective: "1200px" }}>
+          {/* Video — top: -20px gives 20px headroom so parallax never shows a gap */}
+          <motion.video
+            ref={videoRef}
+            src="/reveal.mp4.mp4"
+            muted
+            playsInline
+            preload="auto"
+            aria-label="Forge TKL mechanical keyboard exploded assembly view"
+            style={{ y: videoY, rotateX, rotateY, top: "-20px", height: "calc(100% + 20px)", willChange: "transform" }}
+            className="absolute left-0 right-0 w-full object-cover"
+          />
+        </div>
 
         {/* Dark vignette — stronger at bottom */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-background/50 pointer-events-none" />
@@ -125,7 +132,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
-              className="font-display text-[40px] sm:text-5xl md:text-7xl lg:text-[88px] leading-[0.93] tracking-[-0.025em] text-foreground max-w-2xl"
+              className="font-display text-[clamp(40px,7.5vw,88px)] leading-[0.93] tracking-[-0.025em] text-foreground max-w-2xl"
             >
               Every keystroke,
               <br />

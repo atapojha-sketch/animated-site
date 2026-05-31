@@ -77,7 +77,7 @@ export default function SpecsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.7, ease: easeOut, delay: 0.08 }}
-            className="font-display text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-[-0.02em] text-foreground"
+            className="font-display text-[clamp(32px,5vw,60px)] leading-[0.95] tracking-[-0.02em] text-foreground"
           >
             Built to spec,
             <br />
@@ -91,7 +91,7 @@ export default function SpecsSection() {
             {counters.map((c, i) => (
               <motion.div
                 key={c.label}
-                initial={{ opacity: 0, y: 24, filter: "blur(4px)" }}
+                initial={{ opacity: 0, y: 24, filter: "blur(2px)" }}
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 0.65, ease: easeOut, delay: i * 0.1 }}
@@ -135,10 +135,10 @@ export default function SpecsSection() {
                   transition={{ duration: 0.4, ease: easeOut, delay: 0.3 + i * 0.05 }}
                   className="flex items-baseline justify-between py-4 gap-4"
                 >
-                  <span className="text-muted font-body text-xs tracking-wider uppercase shrink-0">
+                  <span className="text-muted font-body text-xs tracking-[0.1em] uppercase shrink-0">
                     {s.label}
                   </span>
-                  <span className="text-foreground/80 font-body text-sm text-right">
+                  <span className="text-foreground/80 font-body text-sm text-right leading-relaxed">
                     {s.value}
                   </span>
                 </motion.div>

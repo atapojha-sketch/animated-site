@@ -38,7 +38,7 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.8, ease: easeOut, delay: 0.08 }}
-          className="font-display text-5xl md:text-7xl lg:text-[96px] leading-[0.9] tracking-[-0.03em] text-foreground max-w-4xl"
+          className="font-display text-[clamp(40px,8vw,96px)] leading-[0.9] tracking-[-0.03em] text-foreground max-w-4xl"
         >
           The keyboard
           <br />

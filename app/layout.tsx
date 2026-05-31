@@ -15,9 +15,33 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://forgekeyboards.com"),
   title: "Forge TKL — Precision Mechanical Keyboard",
   description:
     "CNC-machined aluminum. Hot-swap switches. Gasket-mounted plate. The Forge TKL is built for those who refuse to compromise.",
+  openGraph: {
+    title: "Forge TKL — Precision Mechanical Keyboard",
+    description:
+      "CNC-machined aluminum. Hot-swap switches. Gasket-mounted plate.",
+    url: "https://forgekeyboards.com",
+    siteName: "Forge Keyboards",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Forge TKL mechanical keyboard",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Forge TKL — Precision Mechanical Keyboard",
+    description:
+      "CNC-machined aluminum. Hot-swap switches. Gasket-mounted plate.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
