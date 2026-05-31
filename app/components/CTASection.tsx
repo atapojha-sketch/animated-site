@@ -77,7 +77,8 @@ export default function CTASection() {
           </div>
 
           <div className="flex flex-col gap-3 sm:ml-8">
-            <motion.button
+            <motion.a
+              href="/order"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -99,7 +100,7 @@ export default function CTASection() {
                   strokeLinejoin="round"
                 />
               </svg>
-            </motion.button>
+            </motion.a>
             <p className="text-xs text-muted font-body text-center sm:text-left">
               Estimated shipping Q3 2025
             </p>
@@ -121,13 +122,17 @@ export default function CTASection() {
             © 2025 Forge Keyboards. Designed and assembled in-house.
           </p>
           <div className="flex gap-6">
-            {["Warranty", "Returns", "Contact"].map((item) => (
+            {[
+              { label: "Warranty", href: "/warranty" },
+              { label: "Returns",  href: "/returns"  },
+              { label: "Contact",  href: "mailto:hello@forgekeyboards.com" },
+            ].map((item) => (
               <a
-                key={item}
-                href="#"
+                key={item.label}
+                href={item.href}
                 className="link-underline text-[11px] tracking-[0.18em] text-muted hover:text-foreground/60 uppercase font-body transition-colors duration-200"
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </div>

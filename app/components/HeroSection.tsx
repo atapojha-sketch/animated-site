@@ -78,7 +78,7 @@ export default function HeroSection() {
           {/* Video — top: -20px gives 20px headroom so parallax never shows a gap */}
           <motion.video
             ref={videoRef}
-            src="/reveal.mp4"
+            src="reveal-scrub.mp4"
             muted
             playsInline
             preload="auto"
@@ -103,7 +103,7 @@ export default function HeroSection() {
             Forge
           </span>
           <a
-            href="#cta"
+            href="/order"
             className="link-underline text-xs tracking-[0.18em] text-foreground/50 uppercase border border-foreground/20 px-5 py-2.5 hover:border-amber hover:text-foreground transition-colors duration-300"
           >
             Order — $289
@@ -159,7 +159,7 @@ export default function HeroSection() {
               className="mt-8 flex items-center gap-6"
             >
               <motion.a
-                href="#cta"
+                href="/order"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
