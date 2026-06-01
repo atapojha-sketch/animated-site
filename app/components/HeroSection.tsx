@@ -15,25 +15,10 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const rafRef = useRef<number | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
-  });
-
-  // Scroll-scrub video — rAF-batched so we seek at most once per display frame
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
-    rafRef.current = requestAnimationFrame(() => {
-      const video = videoRef.current;
-      if (!video?.duration || !isFinite(video.duration)) return;
-      const target = latest * video.duration;
-      type V = HTMLVideoElement & { fastSeek?: (t: number) => void };
-      const v = video as V;
-      v.fastSeek ? v.fastSeek(target) : (video.currentTime = target);
-      rafRef.current = null;
-    });
   });
 
   // Scroll-driven transforms
@@ -80,10 +65,11 @@ export default function HeroSection() {
             ref={videoRef}
             src="reveal-scrub.mp4"
             muted
+            autoPlay
             playsInline
             preload="auto"
             aria-label="Forge TKL mechanical keyboard exploded assembly view"
-            style={{ y: videoY, rotateX, rotateY, top: "-20px", height: "calc(100% + 20px)", willChange: "transform" }}
+            style={{ rotateX, rotateY, top: "-20px", height: "calc(100% + 20px)", willChange: "transform" }}
             className="absolute left-0 right-0 w-full object-cover"
           />
         </div>
