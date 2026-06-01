@@ -90,7 +90,7 @@ export default function HeroSection() {
           </span>
           <a
             href="/order"
-            className="link-underline text-xs tracking-[0.18em] text-foreground/50 uppercase border border-foreground/20 px-5 py-2.5 hover:border-emerald hover:text-foreground transition-colors duration-300"
+            className="pulsate-button text-xs tracking-[0.18em] text-background uppercase bg-emerald px-5 py-2.5 transition-all duration-300 font-body font-bold"
           >
             Order — $289
           </a>
